@@ -2,7 +2,7 @@ module:
   imports:
     - path: github.com/CaiJimmy/hugo-theme-stack/v3
 
-baseurl: "https://blog.dragoi.me"
+baseurl: "https://stindrago.github.io/blog.dragoi.me/"
 languageCode: en-us
 paginate: 5
 title: Costin Dragoi's Blog
