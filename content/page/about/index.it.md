@@ -18,22 +18,26 @@ menu:
 image: "https://media.giphy.com/media/077i6AULCXc0FKTj9s/giphy.gif"
 ---
  
-- 🔭 Non vedo l'ora di diventare **uno scrittore tecnico di API**.
-- ❤️ Adoro scrivere, il FOSS e creare applicazioni web fantastiche.
-- 🛠️ Tech stack <details><summary><b>Dettagli</b></summary>
+- 👤 In missione per diventare uno **Specialista in Sicurezza Informatica**.
+- ❤️ Amo scrivere, il software libero, e creare cose straordinarie.
+- 🎯 **Competenze Tecniche** <details><summary><b>Esplora</b></summary>
   <p>
-  
-  | **Category**  | **Technologies**                                                                                                                       |
-  |---------------|-------------------------------------------------------------------------------------------------------------------------------------------|
-  | **Scripting** | Babashka, BASH                                                                                                                            |
-  | **Frontend**  | HTML, TailwindCSS, JavaScript, ClojureScript, React, Vite                                                                                  |
-  | **Backend**   | Clojure, NodeJS, JVM, Nginx, Hugo                                                                                                                          |
-  | **Cloud**     | [![Netlify](https://img.shields.io/static/v1?label=&message=Netlify&color=00C7B7&logo=netlify&logoColor=FFFFFF)](https://netlify.com/)     |
-  | **DevOps**    | [![Docker](https://img.shields.io/static/v1?label=&message=Docker&color=2496ED&logo=docker&logoColor=FFFFFF)](https://docker.com/), Gitea |
-  | **OS**        | Linux, MacOS, Windows                                                                                                                     |
-  | **Editors**   | Emacs, VIM, VSCode                                                                                                                        |
-
+  | **Categoria**           | **Tecnologie**                                                                                   |
+  |------------------------|----------------------------------------------------------------------------------------------------|
+  | **Scripting**          | Babashka, BASH, SQL, Clojure, JavaScript                                                           |
+  | **Frontend**           | HTML, TailwindCSS, ClojureScript, React, Vite, CSS, Markdown                                       |
+  | **Backend**            | JVM, Nginx, Hugo, NodeJS                                                                           |
+  | **Cloud**              | Netlify, Nextcloud, Heroku, GitHub, GitLab                                                         |
+  | **DevOps**             | Docker, Gitea, Raspberry PI, JVM, CI/CD                                                            |
+  | **OS**                 | Linux, MacOS, Windows, Ubuntu, Arch Linux, Kali Linux, ParrotOS, iOS, Android, LineageOS, Raspbian |
+  | **Security**           | Wireshark, nmap, Metasploit, OpenSSH, UFW Firewall, SSH, certbot, GPG/PGP, pihole                  |
+  | **Editors**            | Emacs, VIM, VSCode                                                                                 |
+  | **Tools & Frameworks** | TailwindCSS, Hugo, Wordpress, LaTeX, ChatGPT                                                       |
   </p></details>
-- 📫 Raggiungimi su [www.dragoi.me](https://www.dragoi.me).
+- 📬 Visita il mio lavoro su [github.com/stindrago](https://github.com/stindrago) per un'esperienza coinvolgente.
+- 🌐 Parlo fluentemente italiano, rumeno e inglese.
+- 👀 Esperto in analisi dei log, analisi del traffico di rete, valutazione delle vulnerabilità, pensiero critico e risoluzione dei problemi.
 - 😄 Pronomi personali: **Egli/Lui**.
-- ⚡️ Curiosità: sono un convinto sostenitore di Clojure.
+- ⚡️ Curiosità: Sono un grande sostenitore di Clojure e della programmazione funzionale.
+
+Contattami inviando un messaggio istantaneo su [matrix.org](https://matrix.to/#/@stindrago:matrix.org) o via email a [costin@dragoi.me](mailto:costin@dragoi.me).

@@ -2,15 +2,27 @@
 title: "Links"
 slug: "links"
 links:
-  - title: "Projects"
-    description: "A list of my personal projects on a self hosted Gitea."
-    website: "https://git.dragoi.me/costin/"
-    image: brand-gitea-logo.svg
-  - title: "Website"
-    description: "dragoi.me"
-    website: "https://www.dragoi.me/"
+  - title: "GitHub"
+    description: "Personal programming projects."
+    website: "https://github.com/stindrago"
     image:
-
+  - title: "Website"
+    description: "Personal website and blog."
+    website: "https://dragoi.me/"
+    image:
+  - title: "YouTube"
+    description: "Personal YouTube channel."
+    website: "https://www.youtube.com/@stindrago"
+    image:
+  - title: "Matrix"
+    description: "Instant messaging app."
+    website: "https://www.youtube.com/@stindrago"
+    image:
+  - title: "Email"
+    description: "Email address."
+    website: "mailto:costin@dragoi.me"
+    image:
+    
 menu:
     main:
         weight: -50
@@ -20,4 +32,4 @@ menu:
 comments: false
 ---
 
-A list of links where I left a footprint.
+Thanks for embarking on a virtual adventure through my digital realm. Hope you enjoyed the tour! The provided links offer a comprehensive overview of my professional activities and personal projects. Whether it is a collaborative inquiry, an opportunity to learn from my experiences, or a simple desire to connect, I encourage you to utilize the appropriate communication channels. As we navigate the future of our digital age, I firmly believe that the most proactive approach is to actively shape it. I look forward to potential collaborations that will contribute to this digital future.

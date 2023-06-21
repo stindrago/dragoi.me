@@ -15,22 +15,26 @@ menu:
 image: "https://media.giphy.com/media/077i6AULCXc0FKTj9s/giphy.gif"
 ---
  
-- 🔭 Looking forward to become **an API technical writer**.
-- ❤️ I love writing, FOSS, and buildng amazing websites.
-- 🛠️ Tech stack <details><summary><b>Details</b></summary>
+- 👤 On a mission to become a **Cybersecurity Specialist**.
+- ❤️ I love writing, FOSS, and creating amazing things.
+- 🎯 **Technical Skills** <details><summary><b>Explore</b></summary>
   <p>
-  
-  | **Category**  | **Technologies**                                                                                                                       |
-  |---------------|-------------------------------------------------------------------------------------------------------------------------------------------|
-  | **Scripting** | Babashka, BASH                                                                                                                            |
-  | **Frontend**  | HTML, TailwindCSS, JavaScript, ClojureScript, React, Vite                                                                                  |
-  | **Backend**   | Clojure, NodeJS, JVM, Nginx, Hugo                                                                                                                          |
-  | **Cloud**     | [![Netlify](https://img.shields.io/static/v1?label=&message=Netlify&color=00C7B7&logo=netlify&logoColor=FFFFFF)](https://netlify.com/)     |
-  | **DevOps**    | [![Docker](https://img.shields.io/static/v1?label=&message=Docker&color=2496ED&logo=docker&logoColor=FFFFFF)](https://docker.com/), Gitea |
-  | **OS**        | Linux, MacOS, Windows                                                                                                                     |
-  | **Editors**   | Emacs, VIM, VSCode                                                                                                                        |
-
+  | **Category**           | **Technologies**                                                                                   |
+  |------------------------|----------------------------------------------------------------------------------------------------|
+  | **Scripting**          | Babashka, BASH, SQL, Clojure, JavaScript                                                           |
+  | **Frontend**           | HTML, TailwindCSS, ClojureScript, React, Vite, CSS, Markdown                                       |
+  | **Backend**            | JVM, Nginx, Hugo, NodeJS                                                                           |
+  | **Cloud**              | Netlify, Nextcloud, Heroku, GitHub, GitLab                                                         |
+  | **DevOps**             | Docker, Gitea, Raspberry PI, JVM, CI/CD                                                            |
+  | **OS**                 | Linux, MacOS, Windows, Ubuntu, Arch Linux, Kali Linux, ParrotOS, iOS, Android, LineageOS, Raspbian |
+  | **Security**           | Wireshark, nmap, Metasploit, OpenSSH, UFW Firewall, SSH, certbot, GPG/PGP, pihole                  |
+  | **Editors**            | Emacs, VIM, VSCode                                                                                 |
+  | **Tools & Frameworks** | TailwindCSS, Hugo, Wordpress, LaTeX, ChatGPT                                                       |
   </p></details>
-- 📫 Reach me at [www.dragoi.me](https://www.dragoi.me).
+- 📬 Visit my work at [github.com/stindrago](https://github.com/stindrago) for an immersive experience.
+- 🌐 Fluent in Italian, Romanian, and English.
+- 👀 Skilled in log analysis, network traffic analysis, vulnerability assessment, critical thinking, and problem-solving.
 - 😄 Personal pronouns: **He/Him**.
-- ⚡️ Fun fact: I'm a die hard Clojure supporter. 
+- ⚡️ Fun fact: I'm a die hard supporter of Clojure and functional programming.
+
+Reach out to me by sending an instant message at [matrix.org](https://matrix.to/#/@stindrago:matrix.org) or by email at [costin@dragoi.me](mailto:costin@dragoi.me).
