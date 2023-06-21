@@ -22,6 +22,7 @@ image: "https://media.giphy.com/media/077i6AULCXc0FKTj9s/giphy.gif"
 - ❤️ Amo scrivere, il software libero, e creare cose straordinarie.
 - 🎯 **Competenze Tecniche** <details><summary><b>Esplora</b></summary>
   <p>
+  
   | **Categoria**           | **Tecnologie**                                                                                   |
   |------------------------|----------------------------------------------------------------------------------------------------|
   | **Scripting**          | Babashka, BASH, SQL, Clojure, JavaScript                                                           |
@@ -33,6 +34,7 @@ image: "https://media.giphy.com/media/077i6AULCXc0FKTj9s/giphy.gif"
   | **Security**           | Wireshark, nmap, Metasploit, OpenSSH, UFW Firewall, SSH, certbot, GPG/PGP, pihole                  |
   | **Editors**            | Emacs, VIM, VSCode                                                                                 |
   | **Tools & Frameworks** | TailwindCSS, Hugo, Wordpress, LaTeX, ChatGPT                                                       |
+
   </p></details>
 - 📬 Visita il mio lavoro su [github.com/stindrago](https://github.com/stindrago) per un'esperienza coinvolgente.
 - 🌐 Parlo fluentemente italiano, rumeno e inglese.
