@@ -129,15 +129,15 @@ menu:
   main: []
 
   social:
-    - identifier: git
-      name: Git
-      url: https://git.dragoi.me/costin
+    - identifier: github
+      name: GitHub
+      url: https://github.com/stindrago
       params:
-        icon: brand-git
+        icon: brand-github
 
-    - identifier: Matrix
+    - identifier: matrix
       name: Matrix
-      url: https://matrix.org
+      url: https://matrix.to/#/@stindrago:matrix.org
       params:
         icon: brand-matrix
 
