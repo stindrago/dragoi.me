@@ -22,7 +22,11 @@ links:
     description: "Indirizzo email."
     website: "mailto:costin@dragoi.me"
     image:
-    
+  - title: "Chiave GPG/PGP Pubblica Personale"
+    description: "Autenticazione, cifratura, firma digitale, verifica d'identità, integrità dei dati."
+    website: "https://dragoi.me/en/links/costin-dragoi-pubkey.asc"
+    image:
+
 menu:
     main:
         weight: -50

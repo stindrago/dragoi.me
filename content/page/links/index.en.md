@@ -22,6 +22,10 @@ links:
     description: "Email address."
     website: "mailto:costin@dragoi.me"
     image:
+  - title: "GPG/PGP Personal Public Key"
+    description: "Authentication, encryption, digital signature, identity verification, data integrity."
+    website: "https://dragoi.me/en/links/costin-dragoi-pubkey.asc"
+    image:
     
 menu:
     main:
