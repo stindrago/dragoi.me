@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>clojure on Blog di Costin Dragoi</title><link>https://dragoi.me/it/categories/clojure/</link><description>Recent content in clojure on Blog di Costin Dragoi</description><generator>Hugo -- gohugo.io</generator><language>it</language><lastBuildDate>Fri, 24 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://dragoi.me/it/categories/clojure/index.xml" rel="self" type="application/rss+xml"/><item><title>Come creare una pagina web in ClojureScript</title><link>https://dragoi.me/it/p/come-creare-una-pagina-web-in-clojurescript/</link><pubDate>Fri, 24 Feb 2023 00:00:00 +0000</pubDate><guid>https://dragoi.me/it/p/come-creare-una-pagina-web-in-clojurescript/</guid><description>&lt;img src="https://dragoi.me/it/p/come-creare-una-pagina-web-in-clojurescript/preview.png" alt="Featured image of post Come creare una pagina web in ClojureScript" />&lt;ul>
+&lt;li>&lt;a class="link" href="https://demo.dragoi.me/responsive-landing-page-in-clojurescript/" target="_blank" rel="noopener"
+>Demo&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://git.dragoi.me/costin/responsive-landing-page-in-clojurescript" target="_blank" rel="noopener"
+>Repository&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h1 id="introduzione">Introduzione&lt;/h1>
+&lt;p>Febbraio 2023 un mese in un anno di abbondanza sia nel mondo reale che nel mondo digitale, un anno che è appena iniziato. Notizie spaventose continuano a colpire tutti noi, dalla &lt;a class="link" href="https://it.wikipedia.org/wiki/Invasione_russa_dell%27Ucraina_del_2022" target="_blank" rel="noopener"
+>guerra in Ucraina&lt;/a> al &lt;a class="link" href="https://it.wikipedia.org/wiki/Terremoto_in_Turchia_e_Siria_del_2023" target="_blank" rel="noopener"
+>terremoto in Turchia e Siria&lt;/a>, in un periodo in cui l&amp;rsquo;umanità stava ancora riprendendosi dal &lt;a class="link" href="https://it.wikipedia.org/wiki/COVID-19" target="_blank" rel="noopener"
+>virus epidemico COVID-19&lt;/a>. Un età di alta connessione tra individui in cui i pensieri non sono mai stati condivisi con tata volontà è facilità attraverso Internet.&lt;/p>
+&lt;p>Nel corso del tempo la crescita in &lt;a class="link" href="https://it.wikipedia.org/wiki/Lista_dei_linguaggi_di_programmazione" target="_blank" rel="noopener"
+>numero di linguaggi di programmazione&lt;/a> e di framework hanno portato gli sviluppatori alla pazzia. Sulle piattaforme social come &lt;a class="link" href="https://twitter.com" target="_blank" rel="noopener"
+>Twitter&lt;/a> e &lt;a class="link" href="https://reddit.com" target="_blank" rel="noopener"
+>Reddit&lt;/a> si tengono continuamente dibattiti apparentemente critici e costruttivi. Basterà solo continuare a scorrere diverse pagine più in fondo che si potranno notare le vere motivazioni. Le parole diventano più dure, le frasi più crudeli e i paragrafi più lunghi. È qui che i dibattiti si trasformano in battaglie e ogni parte suffraga il proprio punto di vista per un unico fine, annichilare l&amp;rsquo;opposizione. Queste battaglie sono definite &lt;strong>battaglia-dei-linguaggi&lt;/strong> o &lt;strong>battaglia-dei-framework&lt;/strong>.&lt;/p>
+&lt;p>Anche io combatto le mie battaglie, e ho portato per voi un semplice progetto per divulgare un paradigma di programmazione controverso e impopolare. Mi riferisco alla programmazione funzionale il cui simbolo è il &lt;strong>lambda (ƛ)&lt;/strong> e il linguaggio più moderno è &lt;a class="link" href="https://it.wikipedia.org/wiki/Clojure" target="_blank" rel="noopener"
+>Clojure&lt;/a>.&lt;/p>
+&lt;h1 id="quali-strumenti-utilizzeremo">Quali strumenti utilizzeremo?&lt;/h1>
+&lt;p>Uno dei linguaggi più utilizzati per la programmazione web è senza dubbio &lt;a class="link" href="https://it.wikipedia.org/wiki/JavaScript" target="_blank" rel="noopener"
+>JavaScript&lt;/a> e gli accoliti &lt;a class="link" href="https://it.wikipedia.org/wiki/HTML" target="_blank" rel="noopener"
+>HTML&lt;/a> e &lt;a class="link" href="https://it.wikipedia.org/wiki/CSS" target="_blank" rel="noopener"
+>CSS&lt;/a>.&lt;/p>
+&lt;p>Poco tempo fa è nato &lt;a class="link" href="https://it.wikipedia.org/wiki/Clojure" target="_blank" rel="noopener"
+>Clojure&lt;/a> un nuovo linguaggio, un dialetto del appezzato e altrettanto odiato &lt;a class="link" href="https://it.wikipedia.org/wiki/Lisp" target="_blank" rel="noopener"
+>LISP&lt;/a>. Esso ne ha ereditato l&amp;rsquo;eleganza e le funzionalità, il tutto adattato con comodità aggiuntive alle esigenze moderne. Un linguaggio ospite della &lt;a class="link" href="https://it.wikipedia.org/wiki/Macchina_virtuale_Java" target="_blank" rel="noopener"
+>JVM&lt;/a> dove anche qui ne ha ereditato i pregi e i difetti.&lt;/p>
+&lt;p>Con l&amp;rsquo;aumento in popolarità di &lt;a class="link" href="https://it.wikipedia.org/wiki/JavaScript" target="_blank" rel="noopener"
+>JavaScript&lt;/a> si è sviluppato attorno una community numerosa che ha contribuito a espandere gli strumenti ben oltre le richieste. Cosi &lt;a class="link" href="https://it.wikipedia.org/wiki/Clojure" target="_blank" rel="noopener"
+>Clojure&lt;/a> sarebbe andato in ricerca di una nuova piattaforma simbionte. Grazie al ricco ecosistema di &lt;a class="link" href="https://it.wikipedia.org/wiki/JavaScript" target="_blank" rel="noopener"
+>JavaScript&lt;/a> combinato alle ottimizzazioni fornite dal compilatore Google Closure è nato uno dei linguaggi più potenti che il web abbia mai visto: &lt;a class="link" href="https://clojurescript.org" target="_blank" rel="noopener"
+>ClojureScript&lt;/a>.&lt;/p>
+&lt;p>Senza l&amp;rsquo;&lt;a class="link" href="https://it.wikipedia.org/wiki/HTML" target="_blank" rel="noopener"
+>HTML&lt;/a> non esisterebbe il web come lo conosciamo oggi, un linguaggio di markup con la sintassi XML. Purtroppo questa sintassi non a tutti piacque, e cosi sarebbe nata una nuova libreria per &lt;a class="link" href="https://clojurescript.org" target="_blank" rel="noopener"
+>ClojureScript&lt;/a> di nome &lt;a class="link" href="https://github.com/weavejester/hiccup" target="_blank" rel="noopener"
+>Hiccup&lt;/a> con l&amp;rsquo;obiettivo di tradurre la sintassi XML in una più adatta per i sviluppatori in &lt;a class="link" href="https://it.wikipedia.org/wiki/Clojure" target="_blank" rel="noopener"
+>Clojure&lt;/a>. E se in &lt;a class="link" href="https://it.wikipedia.org/wiki/HTML" target="_blank" rel="noopener"
+>HTML&lt;/a> scriviamo &lt;code>&amp;lt;div&amp;gt;...&amp;lt;/div&amp;gt;&lt;/code>, visivamente inappagate; nonostante lo sforzo degli editor a venire in soccorso, con &lt;a class="link" href="https://github.com/weavejester/hiccup" target="_blank" rel="noopener"
+>Hiccup&lt;/a> scriveremo &lt;code>[:div &amp;quot;...&amp;quot;]&lt;/code>, un modo più chiaro e semplice, un modo alla &lt;a class="link" href="https://it.wikipedia.org/wiki/Clojure" target="_blank" rel="noopener"
+>Clojure&lt;/a>… Già… Possiamo distinguere una porzione della sintassi di &lt;a class="link" href="https://it.wikipedia.org/wiki/Clojure" target="_blank" rel="noopener"
+>Clojure&lt;/a>: &lt;code>[]&lt;/code> che di solito rappresenta un contenitore, &lt;code>:div&lt;/code> una keyword, e &lt;code>&amp;quot;&amp;quot;&lt;/code> una stringa.&lt;/p>
+&lt;p>Gli utenti quando surfano il web si aspettano un certo piacere visivo che può essere soddisfatto con un l&amp;rsquo;aggiunta del &lt;a class="link" href="https://it.wikipedia.org/wiki/CSS" target="_blank" rel="noopener"
+>CSS&lt;/a>. Però sono tempi moderni e sono rimasti in pochi gli sviluppatori puristi che programmano in vanilla. E come biasimare la maggioranza, i framework assistono lo sviluppatore a produrre a una velocità singolare. Per questo ho scelto di usare &lt;a class="link" href="https://tailwindcss.com" target="_blank" rel="noopener"
+>TailwindCSS&lt;/a> che porta classi già implementate che vengono utilizzate direttamente nel codice &lt;a class="link" href="https://it.wikipedia.org/wiki/HTML" target="_blank" rel="noopener"
+>HTML&lt;/a>. In più utilizzeremo anche &lt;a class="link" href="https://daisyui.com" target="_blank" rel="noopener"
+>DaisyUI&lt;/a>, una libreria di componenti.&lt;/p>
+&lt;p>Un altro framework che utilizzeremo in questo progetto è &lt;a class="link" href="https://github.com/reagent-project/reagent" target="_blank" rel="noopener"
+>Reagent&lt;/a> un interfaccia in &lt;a class="link" href="https://it.wikipedia.org/wiki/Clojure" target="_blank" rel="noopener"
+>Clojure&lt;/a> per &lt;a class="link" href="https://reactjs.org" target="_blank" rel="noopener"
+>React&lt;/a>. E queste è tutto ciò che c&amp;rsquo;è da dire sulla sua esistenza.&lt;/p>
+&lt;p>&lt;a class="link" href="https://github.com/thheller/shadow-cljs" target="_blank" rel="noopener"
+>shadow-cljs&lt;/a>, che ci approvvigiona con tutti gli utili per compilare il codice &lt;a class="link" href="https://clojurescript.org" target="_blank" rel="noopener"
+>ClojureScript&lt;/a>.&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.npmjs.com" target="_blank" rel="noopener"
+>NPM&lt;/a>, uno strumento da linea di comando che useremo per installare i pacchetti su cui dipenderà il nostro progetto.&lt;/p>
+&lt;p>Questi strumenti sono nuovi e carini, ma non eccitatevi troppo, ancora avrete da vedere l&amp;rsquo;attrazione principale, la sintassi all&amp;rsquo;hamburger di &lt;a class="link" href="https://it.wikipedia.org/wiki/Lisp" target="_blank" rel="noopener"
+>LISP&lt;/a>.&lt;/p>
+&lt;p>&lt;img src="https://res.cloudinary.com/aas-sh/image/upload/v1617292932/blog/2019/07/languages_meme_lisp_smdrnm.png"
+loading="lazy"
+>&lt;/p>
+&lt;h1 id="prima-dinziare-installa-i-requisiti">Prima d&amp;rsquo;inziare installa i requisiti&lt;/h1>
+&lt;p>Lista breve dei requisiti.&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;a class="link" href="https://openjdk.org" target="_blank" rel="noopener"
+>Java&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a class="link" href="https://clojure.org" target="_blank" rel="noopener"
+>Clojure&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a class="link" href="https://nodejs.org" target="_blank" rel="noopener"
+>nodejs&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>Durante questo articolo utilizziamo la shell di Linux.&lt;/p>
+&lt;p>Per installare i pacchetti su MacOS usa &lt;a class="link" href="https://brew.sh" target="_blank" rel="noopener"
+>brew&lt;/a>. Per Windows esiste un modo attraverso VSCode per avere la shell, più informazioni &lt;a class="link" href="https://stackoverflow.com/questions/42606837/how-do-i-use-bash-on-windows-from-the-visual-studio-code-integrated-terminal" target="_blank" rel="noopener"
+>qui&lt;/a>. Quando installi i programmi attraverso il package manager i comandi potrebbero variare in base alla distribuzione, la mia è Debian. È per questo che è meglio andare sul sito del programma e installarlo secondo le istruzioni ufficiali.&lt;/p>
+&lt;p>Installa Java, la versione open source: &lt;a class="link" href="https://openjdk.org" target="_blank" rel="noopener"
+>openjdk&lt;/a>.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">sudo apt update
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo apt install default-jre default-jdk
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">java --version
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Prima d&amp;rsquo;installare &lt;a class="link" href="https://it.wikipedia.org/wiki/Clojure" target="_blank" rel="noopener"
+>Clojure&lt;/a>, assicurati prima che le dipendenze &lt;code>bash&lt;/code>, &lt;code>curl&lt;/code>, &lt;code>rlwrap&lt;/code> siano installate.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">which bash curl rlwrap
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;blockquote>
+&lt;p>/bin/bash&lt;br>
+/usr/bin/curl&lt;br>
+/usr/local/bin/rlwrap&lt;/p>
+&lt;/blockquote>
+&lt;p>Altrimenti installli.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">sudo apt install curl rlwrap
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Installa &lt;a class="link" href="https://it.wikipedia.org/wiki/Clojure" target="_blank" rel="noopener"
+>Clojure&lt;/a>.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">curl -O https://download.clojure.org/install/posix-install-1.11.1.1224.sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chmod +x posix-install-1.11.1.1224.sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo ./posix-install-1.11.1.1224.sh
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Installa &lt;a class="link" href="https://nodejs.org/en/" target="_blank" rel="noopener"
+>NodeJS&lt;/a>.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">sudo apt install nodejs
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Ti consiglio d&amp;rsquo;installare &lt;a class="link" href="https://code.visualstudio.com" target="_blank" rel="noopener"
+>VSCode&lt;/a>, ma utilizza il binario senza telemetria di &lt;a class="link" href="https://vscodium.com" target="_blank" rel="noopener"
+>VSCodium&lt;/a>.&lt;/p>
+&lt;h1 id="inizializzare-il-progetto">Inizializzare il progetto&lt;/h1>
+&lt;p>Inizializziamo il progetto per avere un ambiente di sviluppo adeguato.&lt;/p>
+&lt;p>Installa e configura l&amp;rsquo;aiutante di &lt;a class="link" href="https://it.wikipedia.org/wiki/Clojure" target="_blank" rel="noopener"
+>Clojure&lt;/a> per VSCode: &lt;a class="link" href="https://marketplace.visualstudio.com/items?itemName=betterthantomorrow.calva" target="_blank" rel="noopener"
+>Calva&lt;/a>, oppure guarda &lt;a class="link" href="https://clojure.org/guides/editors" target="_blank" rel="noopener"
+>questa&lt;/a> lista, potresti trovare un aiutante per il tuo editor preferito.&lt;/p>
+&lt;p>Inizializza lo scheletro del progetto con &lt;strong>&lt;a class="link" href="https://github.com/thheller/shadow-cljs" target="_blank" rel="noopener"
+>shadow-cljs&lt;/a>&lt;/strong>.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">npx create-cljs-project ~/Desktop/responsive-landing-page-in-clojurescript
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> ~/Desktop/responsive-landing-page-in-clojurescript
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="aggiungi-gli-script-npmhttpswwwnpmjscom">Aggiungi gli script &lt;a class="link" href="https://www.npmjs.com" target="_blank" rel="noopener"
+>NPM&lt;/a>&lt;/h2>
+&lt;p>In &lt;code>package.json&lt;/code>.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="line">&lt;span class="cl">&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nt">&amp;#34;scripts&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;release&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;run-s css:release init:release cljs:release&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;watch&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;run-p css:watch init:watch cljs:watch&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;init:release&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;mkdir -p target/dist &amp;amp;&amp;amp; cp -r resources/{assets,index.html} target/dist&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;init:watch&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;mkdir -p target/build &amp;amp;&amp;amp; cp -r resources/{assets,index.html} target/build&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;css:release&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;postcss resources/css/tailwind.css --output target/dist/css/main.css --verbose&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;css:watch&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;postcss resources/css/tailwind.css --output target/build/css/main.css --watch --verbose&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;cljs:release&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;clojure -M:cljs release app&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;cljs:watch&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;clojure -M:cljs watch app&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>Useremo questi &lt;strong>script&lt;/strong> durante lo sviluppo.&lt;/li>
+&lt;/ul>
+&lt;h2 id="installa-le-dipendenze">Installa le dipendenze&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">npm install react react-dom shadow-cljs tailwindcss daisyui postcss postcss-cli autoprefixer npm-run-all --save
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="configura-tailwindcsshttpstailwindcsscom">Configura &lt;a class="link" href="https://tailwindcss.com" target="_blank" rel="noopener"
+>TailwindCSS&lt;/a>&lt;/h2>
+&lt;p>In &lt;code>tailwind.config.js&lt;/code>.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="line">&lt;span class="cl">&lt;span class="err">module.exports&lt;/span> &lt;span class="err">=&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">content:&lt;/span> &lt;span class="err">[&lt;/span>&lt;span class="nt">&amp;#34;./target/**/*.{html,js}&amp;#34;&lt;/span>&lt;span class="err">]&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">Theme:&lt;/span> &lt;span class="err">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">extend:&lt;/span> &lt;span class="err">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">fontFamily:&lt;/span> &lt;span class="err">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">sans:&lt;/span> &lt;span class="err">[&amp;#39;Roboto&amp;#39;,&lt;/span> &lt;span class="err">&amp;#39;sans-serif&amp;#39;],&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>&lt;span class="err">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">plugins:&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="err">require(&amp;#39;daisyui&amp;#39;)&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="err">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>&lt;em>Riga 5&lt;/em>, aggiunto il font Roboto.&lt;/li>
+&lt;li>&lt;em>Riga 10&lt;/em>, aggiunto il plugin &lt;a class="link" href="https://daisyui.com" target="_blank" rel="noopener"
+>DaisyUI&lt;/a>.&lt;/li>
+&lt;/ul>
+&lt;p>In &lt;code>resources/css/tailwind.css&lt;/code>.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-css" data-lang="css">&lt;span class="line">&lt;span class="cl">&lt;span class="p">@&lt;/span>&lt;span class="k">tailwind&lt;/span> &lt;span class="nt">base&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">@&lt;/span>&lt;span class="k">tailwind&lt;/span> &lt;span class="nt">components&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">@&lt;/span>&lt;span class="k">tailwind&lt;/span> &lt;span class="nt">utilities&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>Aggiunte le classi richieste da &lt;a class="link" href="https://tailwindcss.com" target="_blank" rel="noopener"
+>TailwindCSS&lt;/a> che &lt;a class="link" href="https://postcss.org" target="_blank" rel="noopener"
+>PostCSS&lt;/a> risolverà durante la compilazione attraverso un script che abbiamo definito in &lt;code>package.json&lt;/code>.&lt;/li>
+&lt;/ul>
+&lt;h2 id="configura-postcsshttpspostcssorg">Configura &lt;a class="link" href="https://postcss.org" target="_blank" rel="noopener"
+>PostCSS&lt;/a>&lt;/h2>
+&lt;p>In &lt;code>postcss.config.js&lt;/code>.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="line">&lt;span class="cl">&lt;span class="err">module.exports&lt;/span> &lt;span class="err">=&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">plugins:&lt;/span> &lt;span class="err">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">tailwindcss:&lt;/span> &lt;span class="err">{&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="err">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">autoprefixer:&lt;/span> &lt;span class="p">{}&lt;/span>&lt;span class="err">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="aggiungi-le-pagine-principali">Aggiungi le pagine principali&lt;/h2>
+&lt;p>In &lt;code>resources/index.html&lt;/code>.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&amp;lt;!doctype html&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">html&lt;/span> &lt;span class="na">class&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;scroll-smooth&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">head&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">meta&lt;/span> &lt;span class="na">charset&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;utf-8&amp;#34;&lt;/span> &lt;span class="p">/&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">link&lt;/span> &lt;span class="na">rel&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;icon&amp;#34;&lt;/span> &lt;span class="na">type&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;image/svg+xml&amp;#34;&lt;/span> &lt;span class="na">href&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;assets/images/1F49F.svg&amp;#34;&lt;/span> &lt;span class="p">/&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">link&lt;/span> &lt;span class="na">rel&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;stylesheet&amp;#34;&lt;/span> &lt;span class="na">href&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;css/main.css&amp;#34;&lt;/span> &lt;span class="p">/&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">title&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>Responsive landing page in ClojureScript&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">title&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">head&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">body&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">div&lt;/span> &lt;span class="na">id&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;app&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">div&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">script&lt;/span> &lt;span class="na">src&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;js/main.js&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">script&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">body&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">html&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>In &lt;code>src/main/landing_page/app.cljs&lt;/code>.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-clojure" data-lang="clojure">&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="kd">ns &lt;/span>&lt;span class="nv">landing-page.app&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="ss">:require&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="nv">reagent.dom&lt;/span> &lt;span class="ss">:as&lt;/span> &lt;span class="nv">rd&lt;/span>&lt;span class="p">]))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="kd">defn &lt;/span>&lt;span class="nv">app&lt;/span> &lt;span class="p">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:div&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="ss">:h1&lt;/span> &lt;span class="s">&amp;#34;Hello &amp;#34;&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="ss">:span&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:class&lt;/span> &lt;span class="s">&amp;#34;underline decoration-emerald-500&amp;#34;&lt;/span>&lt;span class="p">}&lt;/span> &lt;span class="s">&amp;#34;World&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="s">&amp;#34;!&amp;#34;&lt;/span>&lt;span class="p">]])&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="kd">defn &lt;/span>&lt;span class="nv">start&lt;/span> &lt;span class="p">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">rd/render&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="nv">app&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">.getElementById&lt;/span> &lt;span class="nv">js/document&lt;/span> &lt;span class="s">&amp;#34;app&amp;#34;&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="kd">defn &lt;/span>&lt;span class="nv">main&lt;/span> &lt;span class="p">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">start&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>&lt;em>Riga 2&lt;/em>, aggiunta la libreria &lt;strong>reagent.dom&lt;/strong>.&lt;/li>
+&lt;li>&lt;em>Riga 4&lt;/em>, definita la funzione &lt;strong>app&lt;/strong> che conterrà più avanti tutti i componenti della pagina web.&lt;/li>
+&lt;li>&lt;em>Riga 7&lt;/em>, definita la funzione &lt;strong>start&lt;/strong> che monta i componenti nella DOM attraverso &lt;strong>rd/render&lt;/strong> che accetta due argomenti.
+&lt;ul>
+&lt;li>Il primo è &lt;strong>[app]&lt;/strong>, la chiamata alla funzione &lt;strong>app&lt;/strong> nella sintassi di &lt;a class="link" href="https://github.com/reagent-project/reagent" target="_blank" rel="noopener"
+>Reagent&lt;/a>. Può essere anche chiamata nella sintassi di &lt;a class="link" href="https://it.wikipedia.org/wiki/Clojure" target="_blank" rel="noopener"
+>Clojure&lt;/a> &lt;code>(rd/render (app) ...)&lt;/code>, però per motivi di efficienza si usa la sintassi di reagent &lt;code>(rd/render [app] ...)&lt;/code>. Più informazioni nella documentazione ufficiale.&lt;/li>
+&lt;li>Il secondo è &lt;code>(.getElementById js/document &amp;quot;app&amp;quot;)&lt;/code> che prende l&amp;rsquo;id &lt;strong>app&lt;/strong> nel file &lt;code>index.html&lt;/code>.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;em>Riga 11&lt;/em>, definita la funzione &lt;strong>main&lt;/strong> che è chiamata da &lt;strong>&lt;a class="link" href="https://github.com/thheller/shadow-cljs" target="_blank" rel="noopener"
+>shadow-cljs&lt;/a>&lt;/strong> per eseguire l&amp;rsquo;ambiente di sviluppo.&lt;/li>
+&lt;/ul>
+&lt;h2 id="fai-partire-la-modalità-sviluppo">Fai partire la modalità sviluppo&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">npm run watch
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Vai all&amp;rsquo;indirizzo &lt;a class="link" href="http://localhost:8080" target="_blank" rel="noopener"
+>http://localhost:8080&lt;/a> e verifica che venga visualizzata la scritta &lt;strong>Hello World!&lt;/strong>.&lt;/p>
+&lt;h1 id="sviluppa-il-sito">Sviluppa il sito&lt;/h1>
+&lt;p>Ora che il progetto contiene tutte le parti necessarie strutturiamo la pagina in componenti.&lt;/p>
+&lt;ul>
+&lt;li>Hero&lt;/li>
+&lt;/ul>
+&lt;p>Contiene un titolo, una descrizione e un pulsante per scorrere più in basso. È la prima cosa che l&amp;rsquo;utente vedrà quando si collegherà al sito e dovrà occupare tutto lo spazio della pagina.&lt;/p>
+&lt;ul>
+&lt;li>Terminal&lt;/li>
+&lt;/ul>
+&lt;p>Contiene la schermata di un terminale con una breve descrizione su come scaricare questo progetto.&lt;/p>
+&lt;ul>
+&lt;li>Footer&lt;/li>
+&lt;/ul>
+&lt;p>Compone la parte finale della pagina. Verranno visualizzati il logo, i social e la licenza.&lt;/p>
+&lt;ul>
+&lt;li>Notice&lt;/li>
+&lt;/ul>
+&lt;p>Contiene una notifica pop-up che informerà l&amp;rsquo;utente sui cookies utilizzati dal sito. Potrà essere chiusa attraverso un pulsante.&lt;/p>
+&lt;ul>
+&lt;li>App&lt;/li>
+&lt;/ul>
+&lt;p>&lt;code>app.cljs&lt;/code>, è il file dove tutti i componenti vengono chiamati.&lt;/p>
+&lt;h2 id="crea-il-componente-hero">Crea il componente &lt;strong>hero&lt;/strong>&lt;/h2>
+&lt;p>In &lt;code>src/main/landing_page/components/hero.cljs&lt;/code>.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-clojure" data-lang="clojure">&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="kd">ns &lt;/span>&lt;span class="nv">landing-page.components.hero&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="kd">defn &lt;/span>&lt;span class="nv">main&lt;/span> &lt;span class="p">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:div&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:class&lt;/span> &lt;span class="s">&amp;#34;hero min-h-screen bg-base-200&amp;#34;&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:div&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:class&lt;/span> &lt;span class="s">&amp;#34;hero-content text-center&amp;#34;&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:div&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:class&lt;/span> &lt;span class="s">&amp;#34;max-w-md&amp;#34;&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:h1&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:class&lt;/span> &lt;span class="s">&amp;#34;text-5xl font-bold&amp;#34;&lt;/span>&lt;span class="p">}&lt;/span> &lt;span class="s">&amp;#34;❤️ ClojureScript&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:p&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:class&lt;/span> &lt;span class="s">&amp;#34;py-6&amp;#34;&lt;/span>&lt;span class="p">}&lt;/span> &lt;span class="s">&amp;#34;Build a responsive landing page in ClojureScript, Reagent and TailwindCSS.&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:a&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:class&lt;/span> &lt;span class="s">&amp;#34;btn btn-primary&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="ss">:href&lt;/span> &lt;span class="s">&amp;#34;#main&amp;#34;&lt;/span>&lt;span class="p">}&lt;/span> &lt;span class="s">&amp;#34;Get Started&amp;#34;&lt;/span>&lt;span class="p">]]]])&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>&lt;em>Riga 1&lt;/em>, definisce il namespace &lt;code>(ns landing-page.components.hero)&lt;/code>.&lt;/li>
+&lt;li>&lt;em>Riga 3&lt;/em>, definisce la funzione &lt;strong>main&lt;/strong>, senza argomenti.
+&lt;ul>
+&lt;li>All interno della funzione &lt;strong>main&lt;/strong> aggiungiamo il &lt;code>[:div ... ]&lt;/code>, in formato &lt;strong>&lt;a class="link" href="https://github.com/weavejester/hiccup" target="_blank" rel="noopener"
+>Hiccup&lt;/a>&lt;/strong> per definire il layout del componente &lt;strong>hero&lt;/strong>.&lt;/li>
+&lt;li>TailiwndCSS è utilizzato all&amp;rsquo;interno di &lt;code>{:class &amp;quot;...&amp;quot;}&lt;/code>, che equivale a &lt;code>class=&amp;quot;...&amp;quot;&lt;/code> in &lt;a class="link" href="https://it.wikipedia.org/wiki/HTML" target="_blank" rel="noopener"
+>HTML&lt;/a>.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="crea-il-componente-terminale">Crea il componente &lt;strong>terminale&lt;/strong>&lt;/h2>
+&lt;p>In &lt;code>src/main/landing_page/components/terminal.cljs&lt;/code>.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-clojure" data-lang="clojure">&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="kd">ns &lt;/span>&lt;span class="nv">landing-page.components.terminal&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="kd">defn &lt;/span>&lt;span class="nv">main&lt;/span> &lt;span class="p">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:div&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:class&lt;/span> &lt;span class="s">&amp;#34;flex justify-center p-8 py-16&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="ss">:id&lt;/span> &lt;span class="s">&amp;#34;main&amp;#34;&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:div&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:class&lt;/span> &lt;span class="s">&amp;#34;mockup-code&amp;#34;&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:pre&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:data-prefix&lt;/span> &lt;span class="s">&amp;#34;$&amp;#34;&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:code&lt;/span> &lt;span class="s">&amp;#34;git clone https://git.dragoi/costin/responsive-landing-page-in-clojurescript&amp;#34;&lt;/span>&lt;span class="p">]]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:pre&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:data-prefix&lt;/span> &lt;span class="s">&amp;#34;&amp;gt;&amp;#34;&lt;/span>, &lt;span class="ss">:class&lt;/span> &lt;span class="s">&amp;#34;text-warning&amp;#34;&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:code&lt;/span> &lt;span class="s">&amp;#34;Cloning into &amp;#39;responsive-landing-page-in-clojurescript&amp;#39;...&amp;#34;&lt;/span>&lt;span class="p">]]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:pre&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:data-prefix&lt;/span> &lt;span class="s">&amp;#34;$&amp;#34;&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:code&lt;/span> &lt;span class="s">&amp;#34;cd responsive-landing-page-in-clojurescript&amp;#34;&lt;/span>&lt;span class="p">]]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:pre&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:data-prefix&lt;/span> &lt;span class="s">&amp;#34;$&amp;#34;&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:code&lt;/span> &lt;span class="s">&amp;#34;npm run release&amp;#34;&lt;/span>&lt;span class="p">]]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:pre&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:data-prefix&lt;/span> &lt;span class="s">&amp;#34;&amp;gt;&amp;#34;&lt;/span>, &lt;span class="ss">:class&lt;/span> &lt;span class="s">&amp;#34;text-warning&amp;#34;&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:code&lt;/span> &lt;span class="s">&amp;#34;[:app] Compiling...&amp;#34;&lt;/span>&lt;span class="p">]]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:pre&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:data-prefix&lt;/span> &lt;span class="s">&amp;#34;&amp;gt;&amp;#34;&lt;/span>, &lt;span class="ss">:class&lt;/span> &lt;span class="s">&amp;#34;text-success&amp;#34;&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:code&lt;/span> &lt;span class="s">&amp;#34;[:app] Build completed.&amp;#34;&lt;/span>&lt;span class="p">]]]])&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="crea-il-componente-footer">Crea il componente &lt;strong>footer&lt;/strong>&lt;/h2>
+&lt;p>In &lt;code>src/main/landing_page/components/footer.cljs&lt;/code>.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-clojure" data-lang="clojure">&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="kd">ns &lt;/span>&lt;span class="nv">landing-page.components.footer&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="kd">defn &lt;/span>&lt;span class="nv">main&lt;/span> &lt;span class="p">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:footer&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:class&lt;/span> &lt;span class="s">&amp;#34;footer p-10 bg-neutral text-neutral-content&amp;#34;&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:div&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:class&lt;/span> &lt;span class="s">&amp;#34;flex flex-col&amp;#34;&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:svg&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:width&lt;/span> &lt;span class="s">&amp;#34;50&amp;#34;&lt;/span>, &lt;span class="ss">:height&lt;/span> &lt;span class="s">&amp;#34;50&amp;#34;&lt;/span>, &lt;span class="ss">:viewbox&lt;/span> &lt;span class="s">&amp;#34;0 0 24 24&amp;#34;&lt;/span>, &lt;span class="ss">:xmlns&lt;/span> &lt;span class="s">&amp;#34;[Access denied](http://www.w3.org/2000/svg&amp;#34;&lt;/span>,&lt;span class="p">)&lt;/span> &lt;span class="ss">:fill-rule&lt;/span> &lt;span class="s">&amp;#34;evenodd&amp;#34;&lt;/span>, &lt;span class="ss">:clip-rule&lt;/span> &lt;span class="s">&amp;#34;evenodd&amp;#34;&lt;/span>, &lt;span class="ss">:class&lt;/span> &lt;span class="s">&amp;#34;fill-current&amp;#34;&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:path&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:d&lt;/span> &lt;span class="s">&amp;#34;M22.672 15.226l-2.432.811.841 2.515c.33 1.019-.209 2.127-1.23 2.456-1.15.325-2.148-.321-2.463-1.226l-.84-2.518-5.013 1.677.84 2.517c.391 1.203-.434 2.542-1.831 2.542-.88 0-1.601-.564-1.86-1.314l-.842-2.516-2.431.809c-1.135.328-2.145-.317-2.463-1.229-.329-1.018.211-2.127 1.231-2.456l2.432-.809-1.621-4.823-2.432.808c-1.355.384-2.558-.59-2.558-1.839 0-.817.509-1.582 1.327-1.846l2.433-.809-.842-2.515c-.33-1.02.211-2.129 1.232-2.458 1.02-.329 2.13.209 2.461 1.229l.842 2.515 5.011-1.677-.839-2.517c-.403-1.238.484-2.553 1.843-2.553.819 0 1.585.509 1.85 1.326l.841 2.517 2.431-.81c1.02-.33 2.131.211 2.461 1.229.332 1.018-.21 2.126-1.23 2.456l-2.433.809 1.622 4.823 2.433-.809c1.242-.401 2.557.484 2.557 1.838 0 .819-.51 1.583-1.328 1.847m-8.992-6.428l-5.01 1.675 1.619 4.828 5.011-1.674-1.62-4.829z&amp;#34;&lt;/span>&lt;span class="p">}]]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:p&lt;/span> &lt;span class="s">&amp;#34;Licensed under&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:a&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:href&lt;/span> &lt;span class="s">&amp;#34;[Creative Commons](https://creativecommons.org/licenses/by-sa/4.0&amp;#34;&lt;/span>,&lt;span class="p">)&lt;/span> &lt;span class="ss">:target&lt;/span> &lt;span class="s">&amp;#34;_blank&amp;#34;&lt;/span>, &lt;span class="ss">:class&lt;/span> &lt;span class="s">&amp;#34;flex items-center space-x-2&amp;#34;&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:span&lt;/span> &lt;span class="s">&amp;#34;CC-BY-SA 4.0&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:div&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:class&lt;/span> &lt;span class="s">&amp;#34;flex items-center space-x-2&amp;#34;&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:img&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:class&lt;/span> &lt;span class="s">&amp;#34;h-4&amp;#34;&lt;/span>, &lt;span class="ss">:src&lt;/span> &lt;span class="s">&amp;#34;[404 Not Found](https://mirrors.creativecommons.org/presskit/icons/cc.svg&amp;#34;&lt;/span>&lt;span class="p">}])&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:img&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:class&lt;/span> &lt;span class="s">&amp;#34;h-4&amp;#34;&lt;/span>, &lt;span class="ss">:src&lt;/span> &lt;span class="s">&amp;#34;[404 Not Found](https://mirrors.creativecommons.org/presskit/icons/by.svg&amp;#34;&lt;/span>&lt;span class="p">}])&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:img&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:class&lt;/span> &lt;span class="s">&amp;#34;h-4&amp;#34;&lt;/span>, &lt;span class="ss">:src&lt;/span> &lt;span class="s">&amp;#34;[404 Not Found](https://mirrors.creativecommons.org/presskit/icons/sa.svg&amp;#34;&lt;/span>&lt;span class="p">}]]])&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:br&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:p&lt;/span> &lt;span class="s">&amp;#34;Made with ♥️ in ClojureScript&amp;#34;&lt;/span>&lt;span class="p">]]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:div&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:span&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:class&lt;/span> &lt;span class="s">&amp;#34;footer-title&amp;#34;&lt;/span>&lt;span class="p">}&lt;/span> &lt;span class="s">&amp;#34;Social&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:div&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:class&lt;/span> &lt;span class="s">&amp;#34;grid grid-flow-col gap-4&amp;#34;&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:a&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:href&lt;/span> &lt;span class="s">&amp;#34;https://twitter.com/stindrago&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="ss">:target&lt;/span> &lt;span class="s">&amp;#34;_blank&amp;#34;&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:svg&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:xmlns&lt;/span> &lt;span class="s">&amp;#34;[Access denied](http://www.w3.org/2000/svg&amp;#34;&lt;/span>,&lt;span class="p">)&lt;/span> &lt;span class="ss">:width&lt;/span> &lt;span class="s">&amp;#34;24&amp;#34;&lt;/span>, &lt;span class="ss">:height&lt;/span> &lt;span class="s">&amp;#34;24&amp;#34;&lt;/span>, &lt;span class="ss">:viewbox&lt;/span> &lt;span class="s">&amp;#34;0 0 24 24&amp;#34;&lt;/span>, &lt;span class="ss">:class&lt;/span> &lt;span class="s">&amp;#34;fill-current&amp;#34;&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:path&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:d&lt;/span> &lt;span class="s">&amp;#34;M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z&amp;#34;&lt;/span>&lt;span class="p">}]]]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:a&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:href&lt;/span> &lt;span class="s">&amp;#34;[Error 403 (Forbidden)!!1](https://youtube.com/@stindrago&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="ss">:target&lt;/span> &lt;span class="s">&amp;#34;_blank&amp;#34;&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:svg&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:xmlns&lt;/span> &lt;span class="s">&amp;#34;[Access denied](http://www.w3.org/2000/svg&amp;#34;&lt;/span>,&lt;span class="p">)&lt;/span> &lt;span class="ss">:width&lt;/span> &lt;span class="s">&amp;#34;24&amp;#34;&lt;/span>, &lt;span class="ss">:height&lt;/span> &lt;span class="s">&amp;#34;24&amp;#34;&lt;/span>, &lt;span class="ss">:viewbox&lt;/span> &lt;span class="s">&amp;#34;0 0 24 24&amp;#34;&lt;/span>, &lt;span class="ss">:class&lt;/span> &lt;span class="s">&amp;#34;fill-current&amp;#34;&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:path&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:d&lt;/span> &lt;span class="s">&amp;#34;M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z&amp;#34;&lt;/span>&lt;span class="p">}]]]]]])&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="crea-il-componente-notice">Crea il componente &lt;strong>notice&lt;/strong>&lt;/h2>
+&lt;p>In &lt;code>src/main/landing_page/components/notice.cljs&lt;/code>.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-clojure" data-lang="clojure">&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="kd">ns &lt;/span>&lt;span class="nv">landing-page.components.notice&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="ss">:require&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="nv">reagent.core&lt;/span> &lt;span class="ss">:as&lt;/span> &lt;span class="nv">r&lt;/span>&lt;span class="p">]))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="k">def &lt;/span>&lt;span class="nv">state&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">r/atom&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:hidden&lt;/span> &lt;span class="nv">false&lt;/span>&lt;span class="p">}))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="kd">defn &lt;/span>&lt;span class="nv">main&lt;/span> &lt;span class="p">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:div&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>&lt;span class="ss">:class&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">str &lt;/span>&lt;span class="s">&amp;#34;toast toast-center sm:toast-start z-10 &amp;#34;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">when &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="ss">:hidden&lt;/span> &lt;span class="o">@&lt;/span>&lt;span class="nv">state&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="s">&amp;#34;hidden&amp;#34;&lt;/span>&lt;span class="p">))}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:div&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>&lt;span class="ss">:class&lt;/span> &lt;span class="s">&amp;#34;alert shadow-lg&amp;#34;&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:div&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:svg&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>&lt;span class="ss">:xmlns&lt;/span> &lt;span class="s">&amp;#34;[Access denied](http://www.w3.org/2000/svg&amp;#34;&lt;/span>,&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="ss">:fill&lt;/span> &lt;span class="s">&amp;#34;none&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="ss">:viewBox&lt;/span> &lt;span class="s">&amp;#34;0 0 24 24&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="ss">:class&lt;/span> &lt;span class="s">&amp;#34;stroke-info flex-shrink-0 w-6 h-6&amp;#34;&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:path&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>&lt;span class="ss">:stroke-linecap&lt;/span> &lt;span class="s">&amp;#34;round&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="ss">:stroke-linejoin&lt;/span> &lt;span class="s">&amp;#34;round&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="ss">:stroke-width&lt;/span> &lt;span class="s">&amp;#34;2&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="ss">:d&lt;/span> &lt;span class="s">&amp;#34;M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z&amp;#34;&lt;/span>&lt;span class="p">}]]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:div&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:h3&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:class&lt;/span> &lt;span class="s">&amp;#34;font-bold&amp;#34;&lt;/span>&lt;span class="p">}&lt;/span> &lt;span class="s">&amp;#34;We don&amp;#39;t use cookies for no reason!&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:div&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:class&lt;/span> &lt;span class="s">&amp;#34;text-xs&amp;#34;&lt;/span>&lt;span class="p">}&lt;/span> &lt;span class="s">&amp;#34;Press the button to dismiss.&amp;#34;&lt;/span>&lt;span class="p">]]]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:div&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:class&lt;/span> &lt;span class="s">&amp;#34;flex-none&amp;#34;&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:button&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>&lt;span class="ss">:class&lt;/span> &lt;span class="s">&amp;#34;btn btn-sm sm:btn-circle btn-wide&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="ss">:on-click&lt;/span> &lt;span class="o">#&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nf">swap!&lt;/span> &lt;span class="nv">state&lt;/span> &lt;span class="nb">assoc &lt;/span>&lt;span class="ss">:hidden&lt;/span> &lt;span class="nv">true&lt;/span>&lt;span class="p">)}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:svg&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>&lt;span class="ss">:xmlns&lt;/span> &lt;span class="s">&amp;#34;[Access denied](http://www.w3.org/2000/svg&amp;#34;&lt;/span>,&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="ss">:class&lt;/span> &lt;span class="s">&amp;#34;h-6 w-6&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="ss">:fill&lt;/span> &lt;span class="s">&amp;#34;none&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="ss">:viewBox&lt;/span> &lt;span class="s">&amp;#34;0 0 24 24&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="ss">:stroke&lt;/span> &lt;span class="s">&amp;#34;currentColor&amp;#34;&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:path&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>&lt;span class="ss">:stroke-linecap&lt;/span> &lt;span class="s">&amp;#34;round&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="ss">:stroke-linejoin&lt;/span> &lt;span class="s">&amp;#34;round&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="ss">:stroke-width&lt;/span> &lt;span class="s">&amp;#34;2&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="ss">:d&lt;/span> &lt;span class="s">&amp;#34;M6 18L18 6M6 6l12 12&amp;#34;&lt;/span>&lt;span class="p">}]]]]]])&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>&lt;em>Riga 2&lt;/em>, &lt;code>(:require [reagent.core :as r])&lt;/code> serve per importare la libreria &lt;strong>reagent.core&lt;/strong>.&lt;/li>
+&lt;li>&lt;em>Riga 4&lt;/em>, &lt;code>(def state (r/atom {:hidden false}))&lt;/code> definisce un atomo di nome &lt;strong>state&lt;/strong>. È una variabile che registra lo stato del componente per determinare se il componente è visibile o nascosto.&lt;/li>
+&lt;li>&lt;em>Riga 8&lt;/em>, &lt;code>{:class (str &amp;quot;toast toast-center sm:toast-start z-10 &amp;quot; (when (:hidden @state) &amp;quot;hidden&amp;quot;))}&lt;/code>, aggiunge la classe &lt;strong>hidden&lt;/strong> se lo stato della variabile &lt;strong>state&lt;/strong> è &lt;strong>{:hidden true}&lt;/strong>.&lt;/li>
+&lt;li>&lt;em>Riga 28&lt;/em>, &lt;code>:on-click #(swap! state assoc :hidden true)&lt;/code>, quando si preme il pulsante cambia lo stato di &lt;strong>state&lt;/strong> in &lt;strong>{:hidden true}&lt;/strong>.&lt;/li>
+&lt;/ul>
+&lt;h2 id="chiama-i-componenti-nel-file-principale">Chiama i componenti nel file principale&lt;/h2>
+&lt;p>In &lt;code>src/main/landing_page/app.cljs&lt;/code>.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-clojure" data-lang="clojure">&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="kd">ns &lt;/span>&lt;span class="nv">landing-page.app&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="ss">:require&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="nv">reagent.dom&lt;/span> &lt;span class="ss">:as&lt;/span> &lt;span class="nv">rd&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="nv">landing-page.components.footer&lt;/span> &lt;span class="ss">:as&lt;/span> &lt;span class="nv">footer&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="nv">landing-page.components.terminal&lt;/span> &lt;span class="ss">:as&lt;/span> &lt;span class="nv">terminal&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="nv">landing-page.components.hero&lt;/span> &lt;span class="ss">:as&lt;/span> &lt;span class="nv">hero&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="nv">landing-page.components.notice&lt;/span> &lt;span class="ss">:as&lt;/span> &lt;span class="nv">notice&lt;/span>&lt;span class="p">]))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="kd">defn &lt;/span>&lt;span class="nv">app&lt;/span> &lt;span class="p">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="ss">:div&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="ss">:data-theme&lt;/span> &lt;span class="s">&amp;#34;dracula&amp;#34;&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="nv">hero/main&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="nv">terminal/main&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="nv">footer/main&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="nv">notice/main&lt;/span>&lt;span class="p">]])&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="kd">defn &lt;/span>&lt;span class="nv">start&lt;/span> &lt;span class="p">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">rd/render&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="nv">app&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">.getElementById&lt;/span> &lt;span class="nv">js/document&lt;/span> &lt;span class="s">&amp;#34;app&amp;#34;&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="kd">defn &lt;/span>&lt;span class="nv">main&lt;/span> &lt;span class="p">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">start&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>Importati tutti i componenti fino a ora definiti.&lt;/li>
+&lt;li>&lt;em>Riga 8&lt;/em>, in &lt;strong>app&lt;/strong> vengono chiamate le funzioni &lt;strong>main&lt;/strong> di tutti i componenti.&lt;/li>
+&lt;/ul>
+&lt;h1 id="conclusioni">Conclusioni&lt;/h1>
+&lt;p>Il sito web è finto. Crea una build per la versione distibuibile.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">npm run release
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Il sito si trova in &lt;code>target/dist&lt;/code>. Può essere fatto il deploy su un qualsiasi web server.&lt;/p></description></item></channel></rss>
