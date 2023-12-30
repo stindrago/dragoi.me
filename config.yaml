@@ -20,10 +20,10 @@ languages:
     weight: 1
 
 # Change it to your Disqus shortname before using
-disqusShortname: hugo-theme-stack
+disqusShortname:
 
 # GA Tracking ID
-googleAnalytics:
+googleAnalytics: G-45F8J1RT4Q
 
 # Always display the language slug in content pages
 defaultContentLanguageInSubdir: true
